@@ -1,0 +1,16 @@
+{
+  "name": "shoppingcart",
+  "version": "1.0.0",
+  "description": "\"Ecommerce using MERN stack\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "km kubi",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.2"
+  }
+}
