@@ -1,4 +1,3 @@
-const { type } = require('express/lib/response')
 const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
@@ -22,7 +21,7 @@ const productSchema = new mongoose.Schema({
     },
     images : [
         {
-            filename : {
+            image : {
                 type: String,
                 required: true
             }
