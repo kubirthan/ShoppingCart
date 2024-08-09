@@ -1,5 +1,6 @@
 const Product = require('../models/productmodel')
 const ErrorHandler = require('../utils/errorHandler')
+const catchAsyncError = require('../middlewares/catchAsyncError')
 
 //Get products - /api/v1/products
 exports.getproducts = async(req,res,next)=> {
@@ -13,13 +14,13 @@ exports.getproducts = async(req,res,next)=> {
 
 
 //create product - /api/v1/product/new
-exports.newProduct = async(req, res, next) => {
-   const product = await Product.create(req.body)
-   res.status(201).json({
-    success: true,
-    product
-   })
-}
+exports.newProduct = catchAsyncError(async(req, res, next) => {
+    const product = await Product.create(req.body)
+    res.status(201).json({
+     success: true,
+     product
+    })
+ })
 
 //Get single product - /api/v1/product/:id
 exports.getSingleProduct = async(req, res, next) => {
