@@ -37,7 +37,7 @@ exports.getSingleProduct = async(req, res, next) => {
     })
 }
 
-//update product -
+//update product - /api/v1/product:id
 exports.updateProduct = async (req, res, next) => {
     let product =  await Product.findById(req.params.id)
 
@@ -57,4 +57,24 @@ exports.updateProduct = async (req, res, next) => {
         success: true,
         product
     })
+}
+
+
+//Delete product - /api/v1/product:id
+exports.deleteProduct = async (req, res, next) => {
+   const product = await Product.findById(req.params.id)
+
+   if(!product) {
+    res.status(404).json({
+        success: false,
+        message : 'product not found'
+    })
+   }
+
+   await product.deleteOne()
+
+   res.status(201).json({
+    success: true,
+    product
+   })
 }
