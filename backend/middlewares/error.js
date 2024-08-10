@@ -19,6 +19,7 @@ module.exports = (err, req, res, next) => {
         if(err.name == "ValidationError") {
             message = Object.values(err.errors).map(value => value.message)
             error = new Error(message)
+            err.statusCode = 400
         }
 
         if(err.name == 'CastError'){
