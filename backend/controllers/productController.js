@@ -4,16 +4,17 @@ const catchAsyncError = require('../middlewares/catchAsyncError')
 const ApiFeatures = require('../utils/apiFeature')
 
 //Get products - /api/v1/products
-exports.getproducts = async(req,res,next)=> {
-   const apiFeatures =  new ApiFeatures(Product.find(), req.query).search().filter()
-
-    const products = await apiFeatures.query
-    res.status(200).json({
-        success : true,
-        count: products.length,
-        products
-    })
-}
+exports.getproducts = catchAsyncError(async(req,res,next)=> {
+    const resPerPage = 2
+    const apiFeatures =  new ApiFeatures(Product.find(), req.query).search().filter().paginate(resPerPage)
+ 
+     const products = await apiFeatures.query
+     res.status(200).json({
+         success : true,
+         count: products.length,
+         products
+     })
+ })
 
 
 //create product - /api/v1/product/new
